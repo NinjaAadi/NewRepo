@@ -1,0 +1,143 @@
+->add category (sc,st) to frontend wherever required
+->check add work experience feature on client side
+    -> only enable save button when user completes a work experience
+    -> remove the successful messge when user adds a text field
+
+24/06/22:
+1. added handleChange/onChange function to admin side user registration (personal_info and admission info)
+2. removed errors like multiplt handleChange with different functionalities defined with same name
+3. framed the api idea: what will be it framework?
+4. added category top personal info
+
+Some mondification that can be done:
+1. Dept, program, course in admission info can be called from api instead of text field
+
+Things to be done:
+1. country, state, district dropdown to be made using api
+2. handleChange/onChange function to be completed for all the input
+3. api to be completed for student registration
+
+//changed district to state
+//add remove work experience also
+//also the numbers are being saved as string what to do for that
+//design dropdown for admission info
+//number are stored as string ex. mobile number is stored as string
+//if phd is not applicable give an option to remove phd completely
+//what should be save condition? roll_no?
+//back functionality in both frontend and backend
+
+//add button to educational details
+// remove functionality
+// api for dept, course..
+
+30/06/22:
+1. check date format which is diplayed at client side 
+2. error handling on client side 
+3. make view/edit profile of client side consistent with admin side
+4. make required changes in student registration on admin side as discussed
+
+5.(e) add category in mobile view also
+6. (e) make insert API for m_dept_prg_course_sem_subj_subj_type, m_sub_bucket, sub_master, 
+7. (e) Check for dept, prg ,course and how its tackled in backend
+8. (e) only dealing with compulsary and elective subject
+9. (e) while inserting new student make its entry in m_student_pre_reg or change in API accordingly
+
+//keep the date in excel format
+//multiple work experience: disable?
+
+
+TABLE DATA Required:
+1. course_master
+2. dept_master
+3. prog_master
+4. m_dep_dept_details
+5. m_student_dept_program_course
+6. sub_master
+
+
+Changes:
+sem->over=0 chnaged in API: dashboard storyboard, and currentSem_Grade(inside studentDashboard) 
+in preregAPI
+
+{
+  "dept": [
+    {
+      "prg": [
+        {
+          "sem": [
+            {
+              "course": [
+                {
+                  "course_id": "course_master_1638267109564_20151261",
+                  "subj_type_id": "subtype_master_1638267109564_20191568"
+                }
+              ],
+              "sem_id": "sem_master_1638267109564_20161263"
+            }
+          ],
+          "prg_id": "program_master_1638267109564_20151571"
+        }
+      ],
+      "dept_id": "dept_master_20220630214006376_23718330"
+    }
+  ]
+}
+
+subjects in sub_master
+sub_id in m_dept_prg_course_sem_subj_subj_type
+and subtype_id from subtype_master
+
+subject_id:
+sub_master_1638267109564_20161563 
+sub_master_1638267109564_20161565
+sub_master_1638267109564_20161573- elective (done) bucket 1
+sub_master_1638267109564_20161571 (done)
+sub_master_1638267109564_20161567 (done)
+sub_master_1638267109564_20161561- - elective bucket 2
+sub_master_1638267109564_20161562 - elective bucket 2
+
+//66 for elective
+
+m_dep_dept_details is also required for subject_no (done for Student:Abhinav)
+
+bucket_master
+m_sub_bucket 
+
+for abhinav:
+dept_master_20220630214006376_23718330
+program_master_1638267109564_20151571
+course_master_1638267109564_20151261
+sem_master_1638267109564_20161263
+
+Bucket Condition:
+bucket name will always start from 1
+bucket name for a subject is fixed irespective of dept, prg, course
+
+insertAPI:
+bucket->elective subject->bucket name
+m_dept_prg_course_sem_subj_subj_type
+
+complete credit part for all the courses
+
+m_student_sem_details user_id chnage on update
+ADD ENTRY IN m_student_preReg also
+
+
+ToDo:
+
+faculty-Subject-Mapping
+
+save, freeze option in pre-registration
+
+selected subjects by student to be shown to faculty
+
+mutilple approval/disapproval by faculty
+
+flag to indicate complete registration (after approval by faculty) {
+  or different flags to show different situation 
+
+new facultyRegistration page admin side
+
+//faculty will be particular to department
+
+

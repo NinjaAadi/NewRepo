@@ -1,0 +1,54 @@
+@media only screen and (max-width: 600px) {
+     
+     
+  .paddingStyle{
+      padding: 5% 3% 1% 3%;
+      
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+   
+   
+  .paddingStyle{
+      padding: 5% 3% 1% 3%;
+      
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  
+   
+  .paddingStyle{
+      padding: 5% 3% 1% 2%;
+      
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+   
+   
+  .paddingStyle{
+      padding: 1% 0% 1% 1%;
+      margin-left: 4%;
+  }
+  .style{
+    margin-top: 11%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+    
+   .paddingStyle{
+       padding: 1% 0% 1% 1%;
+       margin-left: 8%;
+       margin-top: 5%;
+   }
+    
+   
+}

@@ -1,0 +1,54 @@
+@media only screen and (max-width: 600px) {
+    .button{
+        display: block;
+    }
+    .buttonStyle{
+        background-image: linear-gradient(to bottom right, #fee402, #fd9229);    
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .button{
+        display: block;
+    }
+    .buttonStyle{
+        background-image: linear-gradient(to bottom right, #fee402, #fd9229);    
+    }
+   
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .button{
+        display: flex;
+    }
+    .buttonStyle{
+        background-image: linear-gradient(to bottom right, #fee402, #fd9229);    
+    }
+   
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+     .button{
+         display: flex;
+     }
+     .buttonStyle{
+        background-image: linear-gradient(to bottom right, #fee402, #fd9229);  
+    }
+   
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .button{
+        display: flex;
+    }
+    .buttonStyle{
+        background-image: linear-gradient(to bottom right, #feee01, #ff7700);
+    }
+    .buttonAlign{
+        margin-bottom: 15%;
+    }
+}

@@ -1,0 +1,149 @@
+.selection{
+    right: 1%;
+    top: 2%;
+}
+.innerbuck{
+    border-top-left-radius: 9%;
+    border-top-right-radius: 9%;
+    box-shadow: inset 1px 45px 10px 1px #A7E3BB;
+    padding: 1%;
+    margin: 3%;
+}
+.divider{
+    margin: 2%;
+}
+.subject{
+    display: grid;
+    border: tomato none;
+    margin: 1%;
+}
+.sub{
+    font-size: small;
+    border-radius: 10px;
+}
+.label{
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 5%;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .innerbuck{
+        margin-top: 8%;
+    }
+    .label{
+        font-size: medium;
+        font-weight: bold;
+    }
+    .divider{
+        margin:2%;
+    }
+    .subject{
+        display: grid;
+        border: tomato none;
+        margin-top: 2%;
+    }
+    .sub{
+        border-radius: 10px;    
+        font-size: small;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .innerbuck{
+        margin-top: 8%;
+    }
+    .label{
+        font-size: medium;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;    
+    }
+    .divider{
+        margin: 2%;
+    }
+    .subject{
+        display: grid;
+        border: tomato none;
+        margin:2%;
+    }
+    .sub{
+        border-radius: 10px;    
+        font-size: small;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .innerbuck{
+        margin-top: 6%;
+    }
+    .label{
+        font-size: medium;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;    
+    }
+    .divider{
+        margin: 5%;
+    }
+    .subject{
+        display: grid;
+        border: tomato none;
+        margin:1%;
+    }
+    .sub{
+        border-radius: 10px;    
+        font-size: small;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .innerbuck{
+        margin-top: 2%;
+    }
+    .label{
+        font-size: medium;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .divider{
+        margin: 5%;
+    }
+    .subject{
+        display: grid;
+        border: tomato none;
+        margin:1%;
+    }
+    .sub{
+        border-radius: 10px;    
+        font-size: small;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .innerbuck{
+        margin-top: 2%;
+    }
+    .label{
+        font-size: medium;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .divider {
+        margin: 5%;
+    }
+    .subject{
+        display: grid;
+        border: tomato none;
+        margin:1%
+    }
+    .sub{
+        border-radius: 10px;    
+        font-size: medium;
+    }
+}

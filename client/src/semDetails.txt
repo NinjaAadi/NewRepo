@@ -1,0 +1,26 @@
+semDetails[0]
+  sem_id = "sem_id_1902903"
+  is_over n = 0
+semDetails[1]
+  sem_id s = "sem_id_1902903"
+  is_over n = 0
+semDetails[2]
+  sem_id s = "sem_id_1902903"
+  is_over n = 1
+
+{
+  "semDetails": [
+    {
+      "sem_id": "sem_id_1902903",
+      "is_over": 0
+    },
+    {
+      "sem_id": "sem_id_1902903",
+      "is_over": 0
+    },
+    {
+      "sem_id": "sem_id_1902903",
+      "is_over": 1
+    }
+  ]
+}

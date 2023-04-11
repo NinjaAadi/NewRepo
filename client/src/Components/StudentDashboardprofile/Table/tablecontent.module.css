@@ -1,0 +1,104 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .tableContainer{
+        width: 94%;
+        border-style: groove;
+        margin-left: 2%;
+        
+    }
+    .tableText{
+        width: 94%;
+         
+        border-style: groove;
+        margin-left: 2%;
+        margin-top: 7%;
+    }
+    .tableStyle{
+        display: flex;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .tableContainer{
+        width: 94%;
+        border-style: groove;
+        margin-left: 2%;
+        
+    }
+    .tableText{
+        width: 94%;
+         
+        border-style: groove;
+        margin-left: 2%;
+        margin-top: 7%;
+        
+    }
+    .tableStyle{
+        display: flex;
+    }
+
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .tableContainer{
+        width: 94%;
+        border-style: groove;
+        margin-left: 2%;
+         
+    }
+    .tableText{
+        width: 94%;
+        margin-top: 4%;
+        border-style: groove;
+        margin-left: 2%;
+    }
+    .tableStyle{
+        display: flex;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .tableContainer{
+        width: 94%;
+        border-style: groove;
+        margin-left: 5%;
+         
+    }
+    .tableText{
+        width: 100%;
+        
+        border-style: groove;
+        margin-left: 5%;
+        margin-top: 7%;
+    }
+    .tableStyle{
+        display: flex;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .tableContainer{
+        width: 94%;
+        border-style: groove;
+        margin-left: 5%;
+         
+    }
+    .tableText{
+        width: 100%;
+         
+        border-style: groove;
+        margin-left: 5%;
+        margin-top: 7%;
+    }
+    .tableStyle{
+        display: flex;
+    }
+    
+}

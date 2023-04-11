@@ -1,0 +1,150 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+     .Desktop {
+        display: none;
+    }
+    .Mobile {
+        display: block;
+    }
+    .textLine{
+       display: block;
+   }
+   .calenderContainer{
+    display: block;
+    width: 70%;
+    margin-left: 8%;
+   }
+   .buttonContainer{
+    width: 80%;
+    margin-top: 5%;
+    margin-left: 18%;
+}
+.calender{
+    margin-left: 17%;
+}
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+     .Desktop {
+        display: none;
+    }
+    .Mobile {
+        display: block;
+    }
+   .textLine{
+       display: block;
+   }
+   .calenderContainer{
+    display: flex;
+    width: 90%;
+    margin-left: 7%;
+   }
+   .buttonContainer{
+    width: 63%;
+    
+    padding: 2% 1% 0% 5%;
+}
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .Desktop {
+        display: none;
+    }
+    .Mobile {
+        display: block;
+    }
+   .textLine{
+       display: block;
+   }
+   
+   .calenderContainer{
+    display: flex;
+    width: 90%;
+    margin-left: 7%;
+}
+.buttonContainer{
+    width: 63%;
+    padding: 0% 1% 0% 6%;
+}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .Desktop {
+        display: block;
+    }
+    .Mobile {
+        display: none;
+    }
+    .buttonCards{
+        width: 100%;
+    }
+    .alignment{
+        display: block;
+    }
+    .styling{
+        width: 100%;
+    }
+   .textLine{
+       display: flex;
+       width: 100%;
+   }
+    
+.calenderContainer{
+        display: flex;
+        width: 90%;
+}
+.buttonContainer{
+    width: 60%;
+     padding: 0% 1% 2% 5%;
+}
+.style{
+    width: 62%;
+}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .Desktop {
+        display: block;
+    }
+    .Mobile {
+        display: none;
+    }
+    .buttonCards{
+        width: 110%;
+    }
+   .textLine{
+       display: flex;
+       width: 104%;
+        
+   }
+   .alignment{
+    display: flex;
+    width: 100%;
+}
+.styling{
+    width:67%;
+}
+    
+   .calenderContainer{
+       display: block;
+       width: 25%;
+   }
+   .buttonContainer{
+    width: 100%;
+    padding: 0% 1% 0% 0%;
+    margin-top: 3%;
+}
+   
+   .style{
+     width: 70%;
+}
+
+
+
+}

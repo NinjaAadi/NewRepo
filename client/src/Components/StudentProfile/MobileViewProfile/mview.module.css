@@ -1,0 +1,95 @@
+.color{
+    background-color: #0070C0;
+    color: white;
+    padding: 2px;
+    /* border: black solid; */
+}
+
+.textStyle {
+    margin-top: 3%;
+    /* border: black solid; */
+}
+
+.textStyleLeft {
+    margin-top: 6%;
+    text-align: left;
+    margin-left: 5%;
+    /* border: black solid; */
+}
+
+.textStyleRight {
+    margin-top: 6%;
+    text-align: right;
+    margin-right: 5%;
+    /* border: black solid; */
+}
+
+.textAddressInput {
+    margin: 1% 1%;
+}
+
+.textInput {
+    margin: 3% 2%;
+    /* width: 99%; */
+}
+
+.textInput1 {
+    margin: 3% 2%;
+    margin-top: 5%;
+    /* width: 99%; */
+}
+
+.personal1{
+    margin-left:1% ;
+    border:lightskyblue;
+    margin-top: 1%;
+
+}
+
+.tab1 {
+
+    border: red solid;
+    width: 24%;
+    background-image:linear-gradient(to left,#50C878 40%,#C1F367 100%)   
+}
+  
+  span.space{
+      padding:6rem;
+  }
+  
+  span.space1{
+    padding:7.4rem;
+}
+span.space2{
+    padding:5.6rem;
+}
+span.space3{
+    padding:3.5rem;
+}
+span.space4{
+    padding:4.5rem;
+}
+span.space5{
+    padding:4rem;
+}
+span.space6{
+    padding:2rem;
+}
+span.space7{
+    padding:7.8rem;
+}
+span.space8{
+    padding:4rem;
+}
+/* input[type=text]{
+border:lightgrey solid 1px;
+} */
+.info1{
+    font-size: 1.2rem;
+    width:  81%;
+}
+.space14{
+    padding:2rem;
+}
+
+

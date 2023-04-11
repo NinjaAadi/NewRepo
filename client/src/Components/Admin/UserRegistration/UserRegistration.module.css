@@ -1,0 +1,223 @@
+
+.upper{
+    background-image: linear-gradient(to left,#00A693 0%,#50C878 57%,#3EC26A 96%);
+    text-align: left;
+    padding-top: 1%;
+}
+
+
+.lower{
+    background-color: white;
+    border:brown none;
+    border-top-left-radius: 7rem;
+    border-top-right-radius:7rem; 
+    box-shadow:  inset 0rem 1rem 0rem 0rem grey;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    text-align: left;
+}
+
+.img{
+    border: none;
+    text-align: center;
+    border: springgreen none;
+}
+
+.logo{
+    width: 6%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.lowersec{
+    border: olive none;
+    margin-left: 20%;
+    margin-right: 20%;
+    display: grid;
+}
+
+
+.user{
+    background-color: #0070C0;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding: 1%;
+    padding-left: 2%;
+    border-radius: 20px;
+}
+.type1{
+    border: lightgray 1px solid;
+    width: 100%;
+    border-radius: 10px;
+    color:gray;
+    font-size: medium;
+    padding: 12px;
+    margin-top: 1%;
+}
+
+.se{
+    display: flex;
+    width: 100%;
+    border: springgreen none;
+    margin-top: 1%;
+    border-radius: 10px;
+}
+.type{
+    color:gray;
+    border: lightgray solid 1px;
+    font-size: small;
+    border: none;
+    width: 12%;
+    border-radius: 5px;
+}
+
+.tri{
+    display: flex;
+    margin-top: 3%;
+    border: aqua none;
+}
+
+.cource{
+    border-radius: 50px;
+    background-color: #0070C0;
+    color: white;
+    text-align: center;
+    width: 35%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: large;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    padding: 1% 0%;
+    border: none;    
+  }
+  
+  @media only screen and (max-width:600px)
+  {
+      
+    .lower{
+        border-top-left-radius: 3rem;
+        border-top-right-radius:3rem;
+    }
+    .logo{
+        width: 18%;
+        margin-top: 6%;
+        margin-bottom: 2%; 
+    }
+    .lowersec{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .user{
+        
+        font-size: medium;
+        margin-bottom: 2%;
+    }
+    .type{
+        font-size: small;
+        width: 40%;
+    }
+    .tri{
+        display: grid;
+
+    }
+
+    .cource{
+        font-size: small;
+        width: 95%;
+    }
+  
+  }
+  
+  @media only screen and (min-width:600px)
+{
+
+    .lower{
+        border-top-left-radius: 5rem;
+        border-top-right-radius:5rem;
+    }
+    .logo{
+        margin-bottom: 1%;
+        width: 17%;
+        margin-top: 5%;
+    }
+    .user{
+        
+        font-size: medium;
+        margin-bottom: 2%;
+        
+    }
+    .type{
+        font-size: small;
+        width: 30%;
+    }
+    .cource{
+        font-size:small ;
+        margin: 1%;
+    }
+  
+
+}
+@media only screen and (min-width:768px)
+{
+    .lower{
+        border-top-left-radius: 6rem;
+        border-top-right-radius:6rem;
+    }
+    .logo{
+        width: 14%;
+        margin-top: 4%;
+        margin-bottom: 1%;
+    }
+    
+    .user{
+        
+        font-size: large;
+        margin-bottom: 2%;
+        
+    }
+    .type{
+        font-size: small;
+        width: 20%;
+    }
+    
+    .cource{
+        font-size: small;
+        margin: 1%;
+        
+    }
+   
+}
+@media only screen and (min-width:992px)
+{
+    .cource{
+        font-size: large;
+        margin: 1%;
+    }
+    .type{
+        font-size: small;
+        width: 15%;
+    }
+    .logo{
+        width: 13%;
+        margin-top: 3%;
+        margin-bottom: 1%;
+    }
+   
+}
+
+@media only screen and (min-width:1200px)
+{
+    .lower{
+        border-top-left-radius: 7rem;
+        border-top-right-radius:7rem;
+    }
+    .logo{
+        width: 10%;
+        margin-top: 3%;
+        margin-bottom: 1%;
+    }
+
+}

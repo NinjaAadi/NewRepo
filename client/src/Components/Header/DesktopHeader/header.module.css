@@ -1,0 +1,133 @@
+/*5x Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .MobileHeader {
+        display: inline;
+    }
+    .profile{
+        display: inline;
+        width: 200px;
+        margin-left: 11%;
+        margin-top: 100px;
+    }
+
+    .searchContainer {
+        display: flex;
+        height: 35px;
+        width: 140px;
+        margin-top: -170px;
+        margin-left: 170px;
+    }
+
+    .iconsContainer {
+        position: absolute;
+        top:  13px;
+        left: 90%;
+        display: flex;
+        
+    }
+}
+
+/*4 Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    
+    .col{
+        position: absolute;
+        position: 50px;
+        margin-top: 70px;
+        margin-left: 400;
+     }
+    .searchContainer {
+        display: flex;
+        height: 35px;
+        width: 200px;
+        margin-top: -90px;
+        margin-left: 400px;
+        
+    }
+
+    .iconsContainer {
+        position: absolute;
+        top:  -10px;
+        left: 50%;
+        display: flex;
+        margin: 3px 50px 5px 300px;
+    }
+}
+
+/* 3Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+     
+    .headerContainer { 
+        text-align: center;
+        width: 100%;
+    }
+    .searchContainer {
+         
+        height: 35px;
+        width: 200px;
+        margin-top: -85px;
+        margin-left: 420px;
+        
+    }
+    .iconsContainer {
+        top:  12px;
+         
+        margin-left: 95px;
+        border-radius: 25px;
+        width: 145px;
+    }
+}
+
+/* 2 Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    
+
+    .headerContainer {
+         
+        text-align: center;
+        width: 100%;
+        
+    }
+    
+    .searchContainer {
+         
+        height: 2px;
+        top: 5px;
+        width: 400px;
+        margin-left: 250px;
+         
+        left: 23%; 
+        border-radius: 150px; 
+        background-image: linear-gradient(to right, green, blue, purple);
+    }
+    
+    .iconsContainer {
+       
+        top:  12px;
+        display: flex;
+        margin-left: 90px;
+    }
+}
+
+/* 1 Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+    .headerContainer {   
+        width: 100%;
+    }
+
+    .searchContainer {
+        height: 5px;
+        width: 860px;
+        top: 5px;
+        margin-left: 150px;
+        background-image: linear-gradient(to right, green, blue, purple);
+        border-radius: 50px;
+    }
+    
+    .iconsContainer {
+        top:  12px;
+        margin-left: 320px;
+        display: flex;
+    }
+} 

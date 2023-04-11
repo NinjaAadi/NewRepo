@@ -1,0 +1,1375 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
+
+-- Started on 2022-02-17 13:24:03
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3488 (class 1262 OID 16395)
+-- Name: demo_Db; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "demo_Db" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'English_India.1252';
+
+
+ALTER DATABASE "demo_Db" OWNER TO postgres;
+
+\connect "demo_Db"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 209 (class 1259 OID 16620)
+-- Name: auth_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_master (
+    auth_id character varying(255) NOT NULL,
+    auth_type character varying(255)
+);
+
+
+ALTER TABLE public.auth_master OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 33428)
+-- Name: bucket_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.bucket_master (
+    bucket_id character varying(255) NOT NULL,
+    bucket_name integer
+);
+
+
+ALTER TABLE public.bucket_master OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16738)
+-- Name: course_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.course_master (
+    course_id character varying(255) NOT NULL,
+    course_code character varying(255),
+    course_details json,
+    dept_id json
+);
+
+
+ALTER TABLE public.course_master OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16648)
+-- Name: dept_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.dept_master (
+    dept_id character varying(255) NOT NULL,
+    dept_code character varying(255),
+    dept_details json
+);
+
+
+ALTER TABLE public.dept_master OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16723)
+-- Name: grade_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.grade_master (
+    grade_id character varying(255) NOT NULL,
+    grade_code character varying(255),
+    grade_pt integer,
+    grade_desc json
+);
+
+
+ALTER TABLE public.grade_master OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 33439)
+-- Name: m_dept_dept_details; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_dept_dept_details (
+    m_dept_dept_details_id character varying(255) NOT NULL,
+    dept_id character varying(255),
+    dept_details jsonb
+);
+
+
+ALTER TABLE public.m_dept_dept_details OWNER TO postgres;
+
+--
+-- TOC entry 227 (class 1259 OID 33483)
+-- Name: m_dept_prg_course_sem_subj_subj_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_dept_prg_course_sem_subj_subj_type (
+    m_dept_prg_course_sem_subj_subj_type_id character varying(255) NOT NULL,
+    sub_id character varying(255),
+    dept_prg_course_sem_subj_subj_type_details jsonb
+);
+
+
+ALTER TABLE public.m_dept_prg_course_sem_subj_subj_type OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 33301)
+-- Name: m_student_attendance; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_student_attendance (
+    m_student_attendance_id character varying(255) NOT NULL,
+    student_id character varying(255),
+    attendance_details jsonb
+);
+
+
+ALTER TABLE public.m_student_attendance OWNER TO postgres;
+
+--
+-- TOC entry 232 (class 1259 OID 41904)
+-- Name: m_student_dept_prg_course; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_student_dept_prg_course (
+    m_student_dept_prg_course_id character varying(255) NOT NULL,
+    student_id character varying(255),
+    person_id character varying(255) NOT NULL,
+    dept_id character varying(255),
+    prog_id character varying(255),
+    course_id character varying(255)
+);
+
+
+ALTER TABLE public.m_student_dept_prg_course OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 33327)
+-- Name: m_student_grade; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_student_grade (
+    m_student_grade_id character varying(255) NOT NULL,
+    student_id character varying(255),
+    grade_details jsonb
+);
+
+
+ALTER TABLE public.m_student_grade OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 25095)
+-- Name: m_student_pre_reg; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_student_pre_reg (
+    m_student_pre_reg_id character varying(255) NOT NULL,
+    student_id character varying(255),
+    isfined boolean,
+    sem_sub_details jsonb
+);
+
+
+ALTER TABLE public.m_student_pre_reg OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 33319)
+-- Name: m_student_reg; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_student_reg (
+    m_student_reg_id character varying(255) NOT NULL,
+    student_id character varying(255),
+    sem_sub_details jsonb,
+    is_fined boolean
+);
+
+
+ALTER TABLE public.m_student_reg OWNER TO postgres;
+
+--
+-- TOC entry 231 (class 1259 OID 41895)
+-- Name: m_student_sem_details; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_student_sem_details (
+    m_student_sem_details_id character varying(255) NOT NULL,
+    user_id character varying(255),
+    person_id character varying(255) NOT NULL,
+    sem_details json
+);
+
+
+ALTER TABLE public.m_student_sem_details OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 33490)
+-- Name: m_sub_bucket; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.m_sub_bucket (
+    m_sub_bucket_id character varying(255) NOT NULL,
+    sub_id character varying(255),
+    bucket_id character varying(255)
+);
+
+
+ALTER TABLE public.m_sub_bucket OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16641)
+-- Name: org_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.org_master (
+    org_id character varying(255) NOT NULL,
+    org_name character varying(255)
+);
+
+
+ALTER TABLE public.org_master OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 33446)
+-- Name: pre_registration_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pre_registration_master (
+    pre_registration_id character varying(255) NOT NULL,
+    acad_year character varying(255),
+    season character varying(255),
+    start_time timestamp with time zone,
+    end_time timestamp with time zone,
+    is_active boolean
+);
+
+
+ALTER TABLE public.pre_registration_master OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16873)
+-- Name: program_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.program_master (
+    prog_id character varying(255) NOT NULL,
+    prog_code character varying(255),
+    prog_details json
+);
+
+
+ALTER TABLE public.program_master OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16846)
+-- Name: registration_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.registration_master (
+    registration_id character varying(255) NOT NULL,
+    pre_registration_id character varying(255),
+    acad_year character varying(255),
+    start_time timestamp with time zone,
+    end_time timestamp with time zone,
+    season character varying(255)
+);
+
+
+ALTER TABLE public.registration_master OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16669)
+-- Name: sem_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sem_master (
+    sem_id character varying(255) NOT NULL,
+    sem_desc jsonb
+);
+
+
+ALTER TABLE public.sem_master OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16634)
+-- Name: site_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.site_master (
+    site_id character varying(255) NOT NULL,
+    site_code integer,
+    site_address character varying(255),
+    site_map json,
+    org_id character varying(255)
+);
+
+
+ALTER TABLE public.site_master OWNER TO postgres;
+
+--
+-- TOC entry 229 (class 1259 OID 41868)
+-- Name: student_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.student_master (
+    student_id character varying(255) NOT NULL,
+    roll_no character varying(255) NOT NULL,
+    student_desc json
+);
+
+
+ALTER TABLE public.student_master OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16745)
+-- Name: sub_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sub_master (
+    sub_id character varying(255) NOT NULL,
+    sub_code character varying(255),
+    sub_credit integer,
+    sub_desc jsonb
+);
+
+
+ALTER TABLE public.sub_master OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16823)
+-- Name: subtype_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subtype_master (
+    subtype_id character varying(255) NOT NULL,
+    sub_type character varying(255),
+    subtype_code integer
+);
+
+
+ALTER TABLE public.subtype_master OWNER TO postgres;
+
+--
+-- TOC entry 233 (class 1259 OID 41914)
+-- Name: user_dbauth; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_dbauth (
+    dbauth_id character varying(255) NOT NULL,
+    user_id character varying(255),
+    person_id character varying(255) NOT NULL,
+    dbauth_params json
+);
+
+
+ALTER TABLE public.user_dbauth OWNER TO postgres;
+
+--
+-- TOC entry 230 (class 1259 OID 41886)
+-- Name: user_master; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_master (
+    user_id character varying(255) NOT NULL,
+    person_id character varying(255) NOT NULL,
+    email character varying(255),
+    contact_no character varying(255),
+    auth_id character varying(255),
+    status integer,
+    group_id integer,
+    site_id character varying(255),
+    user_type integer,
+    is_password_changed integer
+);
+
+
+ALTER TABLE public.user_master OWNER TO postgres;
+
+--
+-- TOC entry 3458 (class 0 OID 16620)
+-- Dependencies: 209
+-- Data for Name: auth_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.auth_master (auth_id, auth_type) VALUES ('auth_master_1638270022317_20151178', 'dbauth');
+INSERT INTO public.auth_master (auth_id, auth_type) VALUES ('auth_master_1638270022317_20151179', 'storageAuth');
+
+
+--
+-- TOC entry 3473 (class 0 OID 33428)
+-- Dependencies: 224
+-- Data for Name: bucket_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.bucket_master (bucket_id, bucket_name) VALUES ('bucket_master_1638267109564_20191561', 1);
+INSERT INTO public.bucket_master (bucket_id, bucket_name) VALUES ('bucket_master_1638267109564_20191562', 2);
+INSERT INTO public.bucket_master (bucket_id, bucket_name) VALUES ('bucket_master_1638267109564_20191563', 3);
+
+
+--
+-- TOC entry 3464 (class 0 OID 16738)
+-- Dependencies: 215
+-- Data for Name: course_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.course_master (course_id, course_code, course_details, dept_id) VALUES ('course_master_1638267109564_20151261', 'CS', '{"dispName":"Computer Science and Engineering"}', '{"id":"dept_master_1638267109564_20151275"}');
+INSERT INTO public.course_master (course_id, course_code, course_details, dept_id) VALUES ('course_master_1638267109564_20151262', 'EE', '{"dispName": "Electrical Engineering"}', '{"id":"dept_master_1638267109564_20151276"}');
+INSERT INTO public.course_master (course_id, course_code, course_details, dept_id) VALUES ('course_master_1638267109564_20151263', 'VL', '{"dispName": "VLSI and Embedded System"}', '{"id":"dept_master_1638267109564_20151276"}');
+INSERT INTO public.course_master (course_id, course_code, course_details, dept_id) VALUES ('course_master_1638267109564_20151264', 'ECE', '{"dispName": "Electrical and Electronics Enginnering"}', '{"id":"dept_master_1638267109564_20151276"}');
+INSERT INTO public.course_master (course_id, course_code, course_details, dept_id) VALUES ('course_master_1638267109564_20151265', 'EC', '{"dispName": "Communication System Engineering"}', '{"id":"dept_master_1638267109564_20151276"}');
+
+
+--
+-- TOC entry 3461 (class 0 OID 16648)
+-- Dependencies: 212
+-- Data for Name: dept_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.dept_master (dept_id, dept_code, dept_details) VALUES ('dept_master_1638267109564_20151271', 'CS', '{"dispName":"Computer Science and Engineering"}');
+INSERT INTO public.dept_master (dept_id, dept_code, dept_details) VALUES ('dept_master_1638267109564_20151272', 'EE', '{"dispName": "Electrical Engineering"}');
+
+
+--
+-- TOC entry 3463 (class 0 OID 16723)
+-- Dependencies: 214
+-- Data for Name: grade_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.grade_master (grade_id, grade_code, grade_pt, grade_desc) VALUES ('grade_master_1638267109564_20161564', 'BB', 7, '{"dispGrade":"2nd Division"}');
+INSERT INTO public.grade_master (grade_id, grade_code, grade_pt, grade_desc) VALUES ('grade_master_1638267109564_20161565', 'BC', 6, '{"dispGrade":"3rd Division"}');
+INSERT INTO public.grade_master (grade_id, grade_code, grade_pt, grade_desc) VALUES ('grade_master_1638267109564_20161561', 'AA', 10, '{"dispGrade":"1st Division"}');
+INSERT INTO public.grade_master (grade_id, grade_code, grade_pt, grade_desc) VALUES ('grade_master_1638267109564_20161562', 'AB', 9, '{"dispGrade":"1st Division"}');
+INSERT INTO public.grade_master (grade_id, grade_code, grade_pt, grade_desc) VALUES ('grade_master_1638267109564_20161563', 'BA', 8, '{"dispGrade":"2nd Division"}');
+
+
+--
+-- TOC entry 3474 (class 0 OID 33439)
+-- Dependencies: 225
+-- Data for Name: m_dept_dept_details; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_dept_dept_details (m_dept_dept_details_id, dept_id, dept_details) VALUES ('m_dept_dept_details_id_1638267109564_20151272', 'dept_master_1638267109564_20151272', '{"dept_details": [{"sem_id": "sem_master_1638267109564_20161261", "prog_id": "program_master_1638267109564_20151571", "course_id": "course_master_1638267109564_20151261", "no_of_subjects": 6}, {"sem_id": "sem_master_1638267109564_20161263", "prog_id": "program_master_1638267109564_20151573", "course_id": "course_master_1638267109564_20151263", "no_of_subjects": 6}]}');
+
+
+--
+-- TOC entry 3476 (class 0 OID 33483)
+-- Dependencies: 227
+-- Data for Name: m_dept_prg_course_sem_subj_subj_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191565', 'sub_master_1638267109564_20161570', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191566"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191566', 'sub_master_1638267109564_20161571', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191567"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191568', 'sub_master_1638267109564_20161573', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191569"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191569"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191561', 'sub_master_1638267109564_20161566', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191562', 'sub_master_1638267109564_20161567', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191566"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191564', 'sub_master_1638267109564_20161569', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191566"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191563', 'sub_master_1638267109564_20161568', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191566"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+INSERT INTO public.m_dept_prg_course_sem_subj_subj_type (m_dept_prg_course_sem_subj_subj_type_id, sub_id, dept_prg_course_sem_subj_subj_type_details) VALUES ('m_dept_prg_course_sem_subj_subj_type_1638267109564_20191567', 'sub_master_1638267109564_20161572', '{"dept": [{"prg": [{"sem": [{"course": [{"course_id": "course_master_1638267109564_20151262", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151264", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161263"}], "prg_id": "program_master_1638267109564_20151571"}, {"sem": [{"course": [{"course_id": "course_master_1638267109564_20151263", "subj_type_id": "subtype_master_1638267109564_20191568"}, {"course_id": "course_master_1638267109564_20151265", "subj_type_id": "subtype_master_1638267109564_20191566"}], "sem_id": "sem_master_1638267109564_20161265"}], "prg_id": "program_master_1638267109564_20151573"}], "dept_id": "dept_master_1638267109564_20151272"}]}');
+
+
+--
+-- TOC entry 3470 (class 0 OID 33301)
+-- Dependencies: 221
+-- Data for Name: m_student_attendance; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_student_attendance (m_student_attendance_id, student_id, attendance_details) VALUES ('m_student_attendance_1638267109564_20191566', 'student_master_1638270222742_20151179', '{"sem": [{"sem_id": "sem_master_1638267109564_20161261", "subject": [{"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": false, "attendance_date": "2018-09-16"}, {"is_present": true, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161562", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": false, "attendance_date": "2018-09-16"}, {"is_present": false, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": false, "attendance_date": "2018-09-15"}, {"is_present": false, "attendance_date": "2018-09-16"}, {"is_present": false, "attendance_date": "2018-09-17"}]}]}, {"sem_id": "sem_master_1638267109564_20161262", "subject": [{"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": false, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161562", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": false, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161563", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": true, "attendance_date": "2018-09-17"}]}]}, {"sem_id": "sem_master_1638267109564_20161263", "subject": [{"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": true, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161562", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": true, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": true, "attendance_date": "2018-09-17"}]}]}, {"sem_id": "sem_master_1638267109564_20161264", "subject": [{"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": true, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": false, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161562", "attendance_detail": [{"is_present": false, "attendance_date": "2018-09-15"}, {"is_present": false, "attendance_date": "2018-09-16"}, {"is_present": true, "attendance_date": "2018-09-17"}]}, {"sub_id": "sub_master_1638267109564_20161561", "attendance_detail": [{"is_present": false, "attendance_date": "2018-09-15"}, {"is_present": true, "attendance_date": "2018-09-16"}, {"is_present": false, "attendance_date": "2018-09-17"}]}]}]}');
+
+
+--
+-- TOC entry 3481 (class 0 OID 41904)
+-- Dependencies: 232
+-- Data for Name: m_student_dept_prg_course; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_student_dept_prg_course (m_student_dept_prg_course_id, student_id, person_id, dept_id, prog_id, course_id) VALUES ('m_student_dept_prg_course_1638267109564_20191561', 'student_master_1638270222742_20151179', '2121EE22', 'dept_master_1638267109564_20151272', 'program_master_1638267109564_20151573', 'course_master_1638267109564_20151263');
+
+
+--
+-- TOC entry 3472 (class 0 OID 33327)
+-- Dependencies: 223
+-- Data for Name: m_student_grade; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_student_grade (m_student_grade_id, student_id, grade_details) VALUES ('m_student_grade_1638267109564_20191567', 'student_master_1638270222742_20151180', '{"sem": [{"sem_id": "sem_master_1638267109564_20161261", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161561", "grade_id": "grade_master_1638267109564_20161562"}, {"sub_id": "sub_master_1638267109564_20161562", "grade_id": "grade_master_1638267109564_20161563"}]}, {"sem_id": "sem_master_1638267109564_20161262", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161563", "grade_id": "grade_master_1638267109564_20161563"}, {"sub_id": "sub_master_1638267109564_20161564", "grade_id": "grade_master_1638267109564_20161564"}]}, {"sem_id": "sem_master_1638267109564_20161263", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161565", "grade_id": "grade_master_1638267109564_20161562"}, {"sub_id": "sub_master_1638267109564_20161566", "grade_id": "grade_master_1638267109564_20161562"}]}, {"sem_id": "sem_master_1638267109564_20161264", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161567", "grade_id": "grade_master_1638267109564_20161562"}, {"sub_id": "sub_master_1638267109564_20161568", "grade_id": "grade_master_1638267109564_20161562"}, {"sub_id": "sub_master_1638267109564_20161569", "grade_id": "grade_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161570", "grade_id": "grade_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161571", "grade_id": "grade_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161572", "grade_id": "grade_master_1638267109564_20161565"}]}]}');
+INSERT INTO public.m_student_grade (m_student_grade_id, student_id, grade_details) VALUES ('m_student_grade_1638267109564_20191566', 'student_master_1638270222742_20151179', '{"sem": [{"sem_id": "sem_master_1638267109564_20161261", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161561", "grade_id": "grade_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161562", "grade_id": "grade_master_1638267109564_20161562"}]}, {"sem_id": "sem_master_1638267109564_20161262", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161563", "grade_id": "grade_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161564", "grade_id": "grade_master_1638267109564_20161563"}]}, {"sem_id": "sem_master_1638267109564_20161263", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161565", "grade_id": "grade_master_1638267109564_20161563"}, {"sub_id": "sub_master_1638267109564_20161566", "grade_id": "grade_master_1638267109564_20161564"}]}, {"sem_id": "sem_master_1638267109564_20161264", "gradeDetails": [{"sub_id": "sub_master_1638267109564_20161567", "grade_id": null}, {"sub_id": "sub_master_1638267109564_20161568", "grade_id": null}, {"sub_id": "sub_master_1638267109564_20161569", "grade_id": null}, {"sub_id": "sub_master_1638267109564_20161570", "grade_id": null}, {"sub_id": "sub_master_1638267109564_20161571", "grade_id": null}, {"sub_id": "sub_master_1638267109564_20161572", "grade_id": null}]}]}');
+
+
+--
+-- TOC entry 3469 (class 0 OID 25095)
+-- Dependencies: 220
+-- Data for Name: m_student_pre_reg; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_student_pre_reg (m_student_pre_reg_id, student_id, isfined, sem_sub_details) VALUES ('m_student_pre_reg_1638267109564_20191566', 'student_master_1638270222742_20151179', false, '{"sem": [{"sem_id": "sem_master_1638267109564_20161261", "subject": [{"sub_id": "sub_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161562"}]}, {"sem_id": "sem_master_1638267109564_20161262", "subject": [{"sub_id": "sub_master_1638267109564_20161563"}, {"sub_id": "sub_master_1638267109564_20161564"}]}, {"sem_id": "sem_master_1638267109564_20161263", "subject": [{"sub_id": "sub_master_1638267109564_20161565"}, {"sub_id": "sub_master_1638267109564_20161566"}]}, {"sem_id": "sem_master_1638267109564_20161264", "subject": [{"sub_id": "sub_master_1638267109564_20161567"}, {"sub_id": "sub_master_1638267109564_20161568"}, {"sub_id": "sub_master_1638267109564_20161569"}, {"sub_id": "sub_master_1638267109564_20161570"}, {"sub_id": "sub_master_1638267109564_20161571"}, {"sub_id": "sub_master_1638267109564_20161572"}]}]}');
+
+
+--
+-- TOC entry 3471 (class 0 OID 33319)
+-- Dependencies: 222
+-- Data for Name: m_student_reg; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_student_reg (m_student_reg_id, student_id, sem_sub_details, is_fined) VALUES ('m_student_reg_1638267109564_20191566', 'student_master_1638270222742_20151179', '{"sem": [{"sem_id": "sem_master_1638267109564_20161261", "subject": [{"sub_id": "sub_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161562"}]}, {"sem_id": "sem_master_1638267109564_20161262", "subject": [{"sub_id": "sub_master_1638267109564_20161563"}, {"sub_id": "sub_master_1638267109564_20161564"}]}, {"sem_id": "sem_master_1638267109564_20161263", "subject": [{"sub_id": "sub_master_1638267109564_20161565"}, {"sub_id": "sub_master_1638267109564_20161566"}]}, {"sem_id": "sem_master_1638267109564_20161264", "subject": [{"sub_id": "sub_master_1638267109564_20161567"}, {"sub_id": "sub_master_1638267109564_20161568"}, {"sub_id": "sub_master_1638267109564_20161569"}, {"sub_id": "sub_master_1638267109564_20161570"}, {"sub_id": "sub_master_1638267109564_20161571"}, {"sub_id": "sub_master_1638267109564_20161572"}]}]}', false);
+INSERT INTO public.m_student_reg (m_student_reg_id, student_id, sem_sub_details, is_fined) VALUES ('m_student_reg_1638267109564_20191567', 'student_master_1638270222742_20151180', '{"sem": [{"sem_id": "sem_master_1638267109564_20161261", "subject": [{"sub_id": "sub_master_1638267109564_20161561"}, {"sub_id": "sub_master_1638267109564_20161562"}]}, {"sem_id": "sem_master_1638267109564_20161262", "subject": [{"sub_id": "sub_master_1638267109564_20161563"}, {"sub_id": "sub_master_1638267109564_20161564"}]}, {"sem_id": "sem_master_1638267109564_20161263", "subject": [{"sub_id": "sub_master_1638267109564_20161565"}, {"sub_id": "sub_master_1638267109564_20161566"}]}, {"sem_id": "sem_master_1638267109564_20161264", "subject": [{"sub_id": "sub_master_1638267109564_20161567"}, {"sub_id": "sub_master_1638267109564_20161568"}, {"sub_id": "sub_master_1638267109564_20161569"}, {"sub_id": "sub_master_1638267109564_20161570"}, {"sub_id": "sub_master_1638267109564_20161571"}, {"sub_id": "sub_master_1638267109564_20161572"}]}]}', false);
+
+
+--
+-- TOC entry 3480 (class 0 OID 41895)
+-- Dependencies: 231
+-- Data for Name: m_student_sem_details; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_student_sem_details (m_student_sem_details_id, user_id, person_id, sem_details) VALUES ('m_student_sem_details_1638267109564_20161565', 'user_master_1638269121277_20151177', '2121EE22', '{
+  "semDetails": [
+    {
+      "sem_id": "sem_master_1638267109564_20161261",
+      "is_over": 0
+    },
+    {
+      "sem_id": "sem_master_1638267109564_20161262",
+      "is_over": 0
+    },
+    {
+      "sem_id": "sem_master_1638267109564_20161263",
+      "is_over": 0
+    },
+    {
+      "sem_id": "sem_master_1638267109564_20161264",
+      "is_over": 1
+    }
+  ]
+}');
+
+
+--
+-- TOC entry 3477 (class 0 OID 33490)
+-- Dependencies: 228
+-- Data for Name: m_sub_bucket; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191561', 'sub_master_1638267109564_20161566', 'bucket_master_1638267109564_20191561');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191562', 'sub_master_1638267109564_20161567', 'bucket_master_1638267109564_20191561');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191563', 'sub_master_1638267109564_20161568', 'bucket_master_1638267109564_20191561');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191564', 'sub_master_1638267109564_20161569', 'bucket_master_1638267109564_20191562');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191565', 'sub_master_1638267109564_20161570', 'bucket_master_1638267109564_20191562');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191566', 'sub_master_1638267109564_20161571', 'bucket_master_1638267109564_20191563');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191567', 'sub_master_1638267109564_20161572', 'bucket_master_1638267109564_20191562');
+INSERT INTO public.m_sub_bucket (m_sub_bucket_id, sub_id, bucket_id) VALUES ('m_sub_bucket_1638267109564_20191568', 'sub_master_1638267109564_20161573', 'bucket_master_1638267109564_20191563');
+
+
+--
+-- TOC entry 3460 (class 0 OID 16641)
+-- Dependencies: 211
+-- Data for Name: org_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.org_master (org_id, org_name) VALUES ('org_master_1638266914155_201511175', 'Indian Institute of Technology, Patna');
+INSERT INTO public.org_master (org_id, org_name) VALUES ('org_master_1638266914155_201511176', 'Indian Institute Of Science, Patna');
+
+
+--
+-- TOC entry 3475 (class 0 OID 33446)
+-- Dependencies: 226
+-- Data for Name: pre_registration_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.pre_registration_master (pre_registration_id, acad_year, season, start_time, end_time, is_active) VALUES ('pre_reg_master_1638267109564_20191561', '2021-22', 'spring', '2021-12-01 00:00:00+05:30', '2022-01-01 17:00:00+05:30', false);
+INSERT INTO public.pre_registration_master (pre_registration_id, acad_year, season, start_time, end_time, is_active) VALUES ('pre_reg_master_1638267109564_20191562', '2021-22', 'autumn', '2022-01-14 18:00:00+05:30', '2022-02-28 22:00:00+05:30', true);
+
+
+--
+-- TOC entry 3468 (class 0 OID 16873)
+-- Dependencies: 219
+-- Data for Name: program_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.program_master (prog_id, prog_code, prog_details) VALUES ('program_master_1638267109564_20151571', 'B.Tech', '{"dispName": "B.Tech",
+  "maxSem": 8
+}');
+INSERT INTO public.program_master (prog_id, prog_code, prog_details) VALUES ('program_master_1638267109564_20151572', 'M.Tech', '{"dispName":"M.Tech",
+  "maxSem": 4
+}');
+INSERT INTO public.program_master (prog_id, prog_code, prog_details) VALUES ('program_master_1638267109564_20151573', 'PhD', '{"dispName":"PhD",
+  "maxSem": 10
+}');
+
+
+--
+-- TOC entry 3467 (class 0 OID 16846)
+-- Dependencies: 218
+-- Data for Name: registration_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.registration_master (registration_id, pre_registration_id, acad_year, start_time, end_time, season) VALUES ('registration_master_1638267109564_20191566', 'pre_registration_1638267109564_20191566', '2016-17', '2016-09-15 09:00:00+05:30', '2017-06-15 17:00:00+05:30', 'spring');
+INSERT INTO public.registration_master (registration_id, pre_registration_id, acad_year, start_time, end_time, season) VALUES ('registration_master_1638267109564_20191567', 'pre_registration_1638267109564_20191567', '2017-18', '2017-09-15 09:00:00+05:30', '2018-06-15 17:00:00+05:30', 'summer');
+
+
+--
+-- TOC entry 3462 (class 0 OID 16669)
+-- Dependencies: 213
+-- Data for Name: sem_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.sem_master (sem_id, sem_desc) VALUES ('sem_master_1638267109564_20161265', '{"dispName": "SEM-V", "dispNumber": 5}');
+INSERT INTO public.sem_master (sem_id, sem_desc) VALUES ('sem_master_1638267109564_20161261', '{"dispName": "SEM-I", "dispNumber": 1}');
+INSERT INTO public.sem_master (sem_id, sem_desc) VALUES ('sem_master_1638267109564_20161262', '{"dispName": "SEM-II", "dispNumber": 2}');
+INSERT INTO public.sem_master (sem_id, sem_desc) VALUES ('sem_master_1638267109564_20161263', '{"dispName": "SEM-III", "dispNumber": 3}');
+INSERT INTO public.sem_master (sem_id, sem_desc) VALUES ('sem_master_1638267109564_20161264', '{"dispName": "SEM-IV", "dispNumber": 4}');
+
+
+--
+-- TOC entry 3459 (class 0 OID 16634)
+-- Dependencies: 210
+-- Data for Name: site_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.site_master (site_id, site_code, site_address, site_map, org_id) VALUES ('site_master_1638267109864_20151176', 1, 'Indian Institute of Technology Patna Bihta Campus, Amhara Road, Bihta, District - Patna Bihar ,801106', '{"latitude": "25.5357° N", "longitude": "84.8512° E"}', 'org_master_1638266914155_201511175');
+INSERT INTO public.site_master (site_id, site_code, site_address, site_map, org_id) VALUES ('site_master_1638267109864_20151177', 2, 'Indian Institute Of Science, Patna Campus, Amhara Road, Bihta, District - Patna Bihar ,801106', '{"latitude":"26.5718° N","longitude":"80.5423° E"}', 'org_master_1638266914155_201511176');
+
+
+--
+-- TOC entry 3478 (class 0 OID 41868)
+-- Dependencies: 229
+-- Data for Name: student_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.student_master (student_id, roll_no, student_desc) VALUES ('student_master_1638270222742_20151179', '2121EE22', '{
+  "personal_info": {
+    "name": {
+      "value": "Rahul",
+      "disable": true
+    },
+    "father_name": {
+      "value": "Manoj Kumar",
+      "disable": true
+    },
+    "mother_name": {
+      "value": "Mala Verma",
+      "disable": true
+    },
+    "dob": {
+      "value": "15/02/2002",
+      "disable": true
+    },
+    "gender": {
+      "value": "Male",
+      "disable": true
+    },
+    "marital_status": {
+      "value": "Single",
+      "disable": true
+    },
+    "roll": {
+      "value": "2121EE22",
+      "disable": true
+    }
+  },
+  "contact_info": {
+    "address": {
+      "value": "Patna, Bihta, 800023",
+      "disable": false
+    },
+    "district": {
+      "value": "Patna",
+      "disable": false
+    },
+    "country": {
+      "value": "India",
+      "disable": false
+    },
+    "state": {
+      "value": "Bihar",
+      "disable": false
+    },
+    "pin": {
+      "value": "801106",
+      "disable": false
+    },
+    "mobile": {
+      "value": 8106193355,
+      "disable": false
+    },
+    "alt_mobile": {
+      "value": 7004377718,
+      "disable": false
+    },
+    "email_id": {
+      "value": "email1@gmail.com",
+      "disable": false
+    },
+    "alt_email_id": {
+      "value": "email2@gmail.com",
+      "disable": false
+    },
+    "institute_email_id": {
+      "value": "demo1@iitp.in",
+      "disable": true
+    },
+    "social_media": {
+      "fb": {
+        "value": "demo1@fb.com",
+        "disable": false
+      },
+      "insta": {
+        "value": "demo1@insta.com",
+        "disable": false
+      },
+      "twitter": {
+        "value": "demo1@twitter.com",
+        "disable": false
+      },
+      "linkedin": {
+        "value": "demo1@linkedin.com",
+        "disable": false
+      }
+    }
+  },
+  "educational_detail": {
+    "secondary": {
+      "school": {
+        "value": "Demo School",
+        "disable": true
+      },
+      "board": {
+        "value": "CBSE",
+        "disable": true
+      },
+      "subject": {
+        "value": "English, Mathematics, Science, Computer, Hindi",
+        "disable": true
+      },
+      "marks_obt": {
+        "value": "450",
+        "disable": true
+      },
+      "tot_marks": {
+        "value": "500",
+        "disable": true
+      },
+      "passing": {
+        "value": "July, 2018",
+        "disable": true
+      }
+    },
+    "senior_secondary_diploma": {
+      "school": {
+        "value": "Demo School",
+        "disable": true
+      },
+      "board": {
+        "value": "CBSE",
+        "disable": true
+      },
+      "subject": {
+        "value": "English, Mathematics, Pysics, Chemistry, IP",
+        "disable": true
+      },
+      "marks_obt": {
+        "value": "450",
+        "disable": true
+      },
+      "tot_marks": {
+        "value": "500",
+        "disable": true
+      },
+      "passing": {
+        "value": "July, 2020",
+        "disable": true
+      }
+    },
+    "graduation": {
+      "program": {
+        "value": "B.Tech",
+        "disable": true
+      },
+      "college": {
+        "value": "IIT Patna",
+        "disable": true
+      },
+      "university": {
+        "value": "IIT Patna",
+        "disable": true
+      },
+      "marking_type": {
+        "value": "CGPA",
+        "disable": true
+      },
+      "department": {
+        "value": "Electrical Engineering",
+        "disable": true
+      },
+      "course": {
+        "value": "Electrical Engineering",
+        "disable": true
+      },
+      "marks_obt": {
+        "value": "450",
+        "disable": true
+      },
+      "tot_marks": {
+        "value": "500",
+        "disable": true
+      },
+      "month_year_passing": {
+        "value": "Aug, 2025",
+        "disable": true
+      }
+    },
+    "post_graduation": {
+      "program": {
+        "value": "M.Tech",
+        "disable": true
+      },
+      "college": {
+        "value": "IIT Patna",
+        "disable": true
+      },
+      "university": {
+        "value": "IIT Patna",
+        "disable": true
+      },
+      "marking_type": {
+        "value": "CGPA",
+        "disable": true
+      },
+      "department": {
+        "value": "Electrical Engineering",
+        "disable": true
+      },
+      "course": {
+        "value": "VLSI Technology",
+        "disable": true
+      },
+      "marks_obt": {
+        "value": "450",
+        "disable": true
+      },
+      "tot_marks": {
+        "value": "500",
+        "disable": true
+      },
+      "month_year_passing": {
+        "value": "Aug, 2027",
+        "disable": true
+      }
+    },
+    "phd": {}
+  },
+  "qualifying_exam": {
+    "exam_name": {
+      "value": "JEE Advance",
+      "disable": true
+    },
+    "month_year_passing": {
+      "value": "Sept, 2021",
+      "disable": true
+    },
+    "score": {
+      "value": "180",
+      "disable": true
+    },
+    "air": {
+      "value": "900",
+      "disable": true
+    },
+    "valid_upto": {
+      "value": "Sept, 2022",
+      "disable": true
+    },
+    "is_qualified": {
+      "value": true,
+      "disable": true
+    }
+  },
+  "work_experience": [
+    {
+      "name_organisation": {
+        "value": "Oracle",
+        "disable": false
+      },
+      "role": {
+        "value": "Intern",
+        "disable": false
+      },
+      "from_period": {
+        "value": "Dec, 2020",
+        "disable": false
+      },
+      "to_period": {
+        "value": "April, 2021",
+        "disable": false
+      }
+    },
+    {
+      "name_organisation": {
+        "value": "Microsoft",
+        "disable": false
+      },
+      "role": {
+        "value": "Data Analyst",
+        "disable": false
+      },
+      "from_period": {
+        "value": "Dec, 2020",
+        "disable": false
+      },
+      "to_period": {
+        "value": "Feb, 2021",
+        "disable": false
+      }
+    },
+    {
+      "name_organisation": {
+        "value": "ECPL",
+        "disable": false
+      },
+      "from_period": {
+        "value": "Dec, 2021",
+        "disable": false
+      },
+      "role": {
+        "value": "Intern",
+        "disable": false
+      },
+      "to_period": {
+        "value": "Feb, 2022",
+        "disable": false
+      }
+    },
+    {
+      "name_organisation": {
+        "value": "Dell",
+        "disable": false
+      },
+      "from_period": {
+        "value": "March, 2021",
+        "disable": false
+      },
+      "role": {
+        "value": "Intern",
+        "disable": false
+      },
+      "to_period": {
+        "value": "Dec, 2022",
+        "disable": false
+      }
+    },
+    {
+      "name_organisation": {
+        "value": "GoldmanSachs",
+        "disable": false
+      },
+      "from_period": {
+        "value": "Jan, 2021",
+        "disable": false
+      },
+      "role": {
+        "value": "Intern",
+        "disable": false
+      },
+      "to_period": {
+        "value": "March, 2022",
+        "disable": false
+      }
+    },
+    {
+      "name_organisation": {
+        "value": "JP",
+        "disable": false
+      },
+      "from_period": {
+        "value": "Jan, 2021",
+        "disable": false
+      },
+      "role": {
+        "value": "Intern",
+        "disable": false
+      },
+      "to_period": {
+        "value": "Dec, 2022",
+        "disable": false
+      }
+    }
+  ],
+  "admission_info": {
+    "dept": {
+      "value": "Electrical Engineering",
+      "disable": true
+    },
+    "program": {
+      "value": "B.Tech",
+      "disable": true
+    },
+    "course": {
+      "value": "Electrical Engineering",
+      "disable": true
+    },
+    "academic_session": {
+      "value": "2016-2020",
+      "disable": true
+    }
+  }
+}');
+
+
+--
+-- TOC entry 3465 (class 0 OID 16745)
+-- Dependencies: 216
+-- Data for Name: sub_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161562', 'MA101', 8, '{"ltp": "1-1-1", "dispName": "Mathematics - I"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161561', 'CH110', 8, '{"ltp": "0-0-3", "dispName": "Chemistry"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161563', 'MA102', 8, '{"ltp": "1-1-1", "dispName": "Mathematics - II"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161564', 'PH101', 8, '{"ltp": "1-1-1", "dispName": "Physics - I"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161565', 'MA201', 8, '{"ltp": "1-1-1", "dispName": "Mathematics - III"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161566', 'EE220', 8, '{"ltp": "1-1-1", "dispName": "Signal System And Networks"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161567', 'EE200', 8, '{"ltp": "1-1-1", "dispName": "Semiconductor Devices And Circuits"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161568', 'EE201', 8, '{"ltp": "1-1-1", "dispName": "Digital Circuits And Microprocessors"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161569', 'EE280', 8, '{"ltp": "1-1-1", "dispName": "Electrical Machines"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161570', 'EE203', 8, '{"ltp": "1-1-1", "dispName": "Analog Integrated Circuits"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161571', 'EE230', 8, '{"ltp": "1-1-1", "dispName": "Principles of Communication"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161572', 'EE204', 8, '{"ltp": "1-1-1", "dispName": "Analog Circuits Laboratory"}');
+INSERT INTO public.sub_master (sub_id, sub_code, sub_credit, sub_desc) VALUES ('sub_master_1638267109564_20161573', 'HS001', 8, '{"ltp": "3-2-0", "dispName": "Preparatory English - I"}');
+
+
+--
+-- TOC entry 3466 (class 0 OID 16823)
+-- Dependencies: 217
+-- Data for Name: subtype_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.subtype_master (subtype_id, sub_type, subtype_code) VALUES ('subtype_master_1638267109564_20191566', 'Elective', 4);
+INSERT INTO public.subtype_master (subtype_id, sub_type, subtype_code) VALUES ('subtype_master_1638267109564_20191567', 'Open Elective', 2);
+INSERT INTO public.subtype_master (subtype_id, sub_type, subtype_code) VALUES ('subtype_master_1638267109564_20191568', 'Compulsory', 1);
+INSERT INTO public.subtype_master (subtype_id, sub_type, subtype_code) VALUES ('subtype_master_1638267109564_20191569', 'HSS Elective', 3);
+
+
+--
+-- TOC entry 3482 (class 0 OID 41914)
+-- Dependencies: 233
+-- Data for Name: user_dbauth; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.user_dbauth (dbauth_id, user_id, person_id, dbauth_params) VALUES ('user_dbauth_1638272624383_20151166', 'user_master_1638269121277_20151177', '2121EE22', '{"encryptedpasswd": "a0b88fc305c4ee1dcc30109d89274db7"}');
+INSERT INTO public.user_dbauth (dbauth_id, user_id, person_id, dbauth_params) VALUES ('user_dbauth_1638272624383_20151167', 'user_master_1638269121277_20151178', '2121EE23', '{"encryptedpasswd":"a765e8fcd9f0313595488697657b400e"}');
+
+
+--
+-- TOC entry 3479 (class 0 OID 41886)
+-- Dependencies: 230
+-- Data for Name: user_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.user_master (user_id, person_id, email, contact_no, auth_id, status, group_id, site_id, user_type, is_password_changed) VALUES ('user_master_1638269121277_20151177', '2121EE22', 'rahul_2121ee22@iitp.ac.in', '6299255860', 'auth_master_1638270022317_20151178', 1, 1, 'site_master_1638267109864_20151176', 1, 0);
+INSERT INTO public.user_master (user_id, person_id, email, contact_no, auth_id, status, group_id, site_id, user_type, is_password_changed) VALUES ('user_master_1638269121277_20151178', '2121EE23', 'maaz_2121ee23@iitp.ac.in', '8540972044', 'auth_master_1638270022317_20151178', 1, 1, 'site_master_1638267109864_20151176', 3, 0);
+
+
+--
+-- TOC entry 3260 (class 2606 OID 16626)
+-- Name: auth_master auth_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_master
+    ADD CONSTRAINT auth_master_pkey PRIMARY KEY (auth_id);
+
+
+--
+-- TOC entry 3290 (class 2606 OID 33434)
+-- Name: bucket_master bucket_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.bucket_master
+    ADD CONSTRAINT bucket_master_pkey PRIMARY KEY (bucket_id);
+
+
+--
+-- TOC entry 3272 (class 2606 OID 16744)
+-- Name: course_master course_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.course_master
+    ADD CONSTRAINT course_master_pkey PRIMARY KEY (course_id);
+
+
+--
+-- TOC entry 3266 (class 2606 OID 16654)
+-- Name: dept_master dept_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dept_master
+    ADD CONSTRAINT dept_master_pkey PRIMARY KEY (dept_id);
+
+
+--
+-- TOC entry 3270 (class 2606 OID 16729)
+-- Name: grade_master grade_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.grade_master
+    ADD CONSTRAINT grade_master_pkey PRIMARY KEY (grade_id);
+
+
+--
+-- TOC entry 3292 (class 2606 OID 33445)
+-- Name: m_dept_dept_details m_dept_deptdetails_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_dept_dept_details
+    ADD CONSTRAINT m_dept_deptdetails_pkey PRIMARY KEY (m_dept_dept_details_id);
+
+
+--
+-- TOC entry 3296 (class 2606 OID 33489)
+-- Name: m_dept_prg_course_sem_subj_subj_type m_dept_prg_course_sem_subj_subj_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_dept_prg_course_sem_subj_subj_type
+    ADD CONSTRAINT m_dept_prg_course_sem_subj_subj_type_pkey PRIMARY KEY (m_dept_prg_course_sem_subj_subj_type_id);
+
+
+--
+-- TOC entry 3284 (class 2606 OID 33307)
+-- Name: m_student_attendance m_student_attendance_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_attendance
+    ADD CONSTRAINT m_student_attendance_pkey PRIMARY KEY (m_student_attendance_id);
+
+
+--
+-- TOC entry 3312 (class 2606 OID 41912)
+-- Name: m_student_dept_prg_course m_student_dept_prg_course_person_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_dept_prg_course
+    ADD CONSTRAINT m_student_dept_prg_course_person_id_key UNIQUE (person_id);
+
+
+--
+-- TOC entry 3314 (class 2606 OID 41910)
+-- Name: m_student_dept_prg_course m_student_dept_prg_course_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_dept_prg_course
+    ADD CONSTRAINT m_student_dept_prg_course_pkey PRIMARY KEY (m_student_dept_prg_course_id);
+
+
+--
+-- TOC entry 3288 (class 2606 OID 33333)
+-- Name: m_student_grade m_student_grade_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_grade
+    ADD CONSTRAINT m_student_grade_pkey PRIMARY KEY (m_student_grade_id);
+
+
+--
+-- TOC entry 3282 (class 2606 OID 25101)
+-- Name: m_student_pre_reg m_student_pre_reg_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_pre_reg
+    ADD CONSTRAINT m_student_pre_reg_pkey PRIMARY KEY (m_student_pre_reg_id);
+
+
+--
+-- TOC entry 3286 (class 2606 OID 33325)
+-- Name: m_student_reg m_student_reg_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_reg
+    ADD CONSTRAINT m_student_reg_pkey PRIMARY KEY (m_student_reg_id);
+
+
+--
+-- TOC entry 3308 (class 2606 OID 41903)
+-- Name: m_student_sem_details m_student_sem_details_person_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_sem_details
+    ADD CONSTRAINT m_student_sem_details_person_id_key UNIQUE (person_id);
+
+
+--
+-- TOC entry 3310 (class 2606 OID 41901)
+-- Name: m_student_sem_details m_student_sem_details_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_student_sem_details
+    ADD CONSTRAINT m_student_sem_details_pkey PRIMARY KEY (m_student_sem_details_id);
+
+
+--
+-- TOC entry 3298 (class 2606 OID 33496)
+-- Name: m_sub_bucket m_sub_bucket_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.m_sub_bucket
+    ADD CONSTRAINT m_sub_bucket_pkey PRIMARY KEY (m_sub_bucket_id);
+
+
+--
+-- TOC entry 3264 (class 2606 OID 16647)
+-- Name: org_master org_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.org_master
+    ADD CONSTRAINT org_master_pkey PRIMARY KEY (org_id);
+
+
+--
+-- TOC entry 3294 (class 2606 OID 33452)
+-- Name: pre_registration_master pre_reg_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pre_registration_master
+    ADD CONSTRAINT pre_reg_master_pkey PRIMARY KEY (pre_registration_id);
+
+
+--
+-- TOC entry 3280 (class 2606 OID 16879)
+-- Name: program_master program_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.program_master
+    ADD CONSTRAINT program_master_pkey PRIMARY KEY (prog_id);
+
+
+--
+-- TOC entry 3278 (class 2606 OID 16852)
+-- Name: registration_master registration_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.registration_master
+    ADD CONSTRAINT registration_master_pkey PRIMARY KEY (registration_id);
+
+
+--
+-- TOC entry 3268 (class 2606 OID 16675)
+-- Name: sem_master sem_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sem_master
+    ADD CONSTRAINT sem_master_pkey PRIMARY KEY (sem_id);
+
+
+--
+-- TOC entry 3262 (class 2606 OID 16640)
+-- Name: site_master site_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_master
+    ADD CONSTRAINT site_master_pkey PRIMARY KEY (site_id);
+
+
+--
+-- TOC entry 3300 (class 2606 OID 41874)
+-- Name: student_master student_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_master
+    ADD CONSTRAINT student_master_pkey PRIMARY KEY (student_id);
+
+
+--
+-- TOC entry 3302 (class 2606 OID 41876)
+-- Name: student_master student_master_roll_no_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_master
+    ADD CONSTRAINT student_master_roll_no_key UNIQUE (roll_no);
+
+
+--
+-- TOC entry 3274 (class 2606 OID 16751)
+-- Name: sub_master sub_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sub_master
+    ADD CONSTRAINT sub_master_pkey PRIMARY KEY (sub_id);
+
+
+--
+-- TOC entry 3276 (class 2606 OID 16829)
+-- Name: subtype_master subtype_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subtype_master
+    ADD CONSTRAINT subtype_master_pkey PRIMARY KEY (subtype_id);
+
+
+--
+-- TOC entry 3316 (class 2606 OID 41922)
+-- Name: user_dbauth user_dbauth_person_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_dbauth
+    ADD CONSTRAINT user_dbauth_person_id_key UNIQUE (person_id);
+
+
+--
+-- TOC entry 3318 (class 2606 OID 41920)
+-- Name: user_dbauth user_dbauth_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_dbauth
+    ADD CONSTRAINT user_dbauth_pkey PRIMARY KEY (dbauth_id);
+
+
+--
+-- TOC entry 3304 (class 2606 OID 41894)
+-- Name: user_master user_master_person_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_master
+    ADD CONSTRAINT user_master_person_id_key UNIQUE (person_id);
+
+
+--
+-- TOC entry 3306 (class 2606 OID 41892)
+-- Name: user_master user_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_master
+    ADD CONSTRAINT user_master_pkey PRIMARY KEY (user_id);
+
+
+-- Completed on 2022-02-17 13:24:04
+
+--
+-- PostgreSQL database dump complete
+--
+

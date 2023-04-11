@@ -1,0 +1,72 @@
+
+@media only screen and (max-width: 600px) {
+    .style{
+        display: flex;
+        line-break: normal;
+    }
+    .styling1{
+        display: block;
+        padding: 1% 1% 1% 1%;
+    }
+    .gcolor{
+        background-image: linear-gradient(to bottom right, #feee01, #ff7700);
+         
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .style{
+        display: flex;
+    }
+    .styling1{
+        display: block;
+        padding: 1% 0% 1% 2%;
+    }
+    .gcolor{
+        background-image: linear-gradient(to bottom right, #feee01, #ff7700);
+    }
+     
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .style{
+        display: flex;
+    }
+    .styling1{
+        display: flex;
+        padding: 1% 0% 1% 2%;
+    }
+    .gcolor{
+        background-image: linear-gradient(to bottom right, #feee01, #ff7700);
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .style{
+        display: flex;
+    }
+    .styling1{
+        display: flex;
+        padding: 1% 0% 1% 2%;
+    }
+    .gcolor{
+        background-image: linear-gradient(to bottom right, #feee01, #ff7700);
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .style{
+        display: flex;
+    }
+    .styling1{
+        display: flex;
+        padding: 1% 0% 1% 2%;
+    }
+    .gcolor{
+        background-image: linear-gradient(to bottom right, #feee01, #ff7700);
+    }
+}
